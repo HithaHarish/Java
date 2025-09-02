@@ -1,0 +1,58 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class Main {
+    public static void main(String[] args) {
+        BST tree = new BST();
+        tree.createRoot(9);
+        tree.insertInTree(5);
+        tree.insertInTree(8);
+        tree.insertInTree(11);
+        tree.insertInTree(34);
+        tree.insertInTree(5);
+        tree.insertInTree(0);
+        tree.insertInTree(3);
+    }
+}
+
+class BST{
+    private Node root;
+    
+    private static class Node{
+        int value;
+        Node left;
+        Node right;
+        
+        private Node(int value){
+            this.value = value;
+        }
+    }
+    
+    public void createRoot(int value){
+        root = new Node(value);
+    }
+    
+    public void insertInTree(int value){
+        add(value, root);
+    }
+    
+    private Node add(int val, Node root){
+        if(root==null) {
+            System.out.println("Inserting here");
+            Node newNode = new Node(val);
+            return newNode;
+        }
+        else if(root.value > val){
+            System.out.println("Moving to the left of"+root.value);
+            root.left = add(val, root.left);
+        }
+        else if(root.value < val){
+            System.out.println("Moving to the right of"+root.value);
+            root.right = add(val, root.right);
+        }
+        else{
+            System.out.println("Value already exists");
+        }
+        return root;
+    }
+}
